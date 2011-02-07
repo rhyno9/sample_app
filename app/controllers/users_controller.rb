@@ -1,22 +1,45 @@
 class UsersController < ApplicationController
   before_filter :authenticate, :only => [:index, :edit, :update]
   before_filter :correct_user, :only => [:edit, :update]
+<<<<<<< HEAD
   before_filter :admin_user,   :only => :destroy
 
+=======
+>>>>>>> user-microposts
   def index
     @title = "All users"
     @users = User.paginate(:page => params[:page])
   end
 
+<<<<<<< HEAD
   def destroy
     User.find(params[:id]).destroy
     flash[:success] = "User destroyed."
     redirect_to users_path
   end
 
+=======
+>>>>>>> user-microposts
   def show
     @user = User.find(params[:id])
+    @microposts = @user.microposts.paginate(:page => params[:page])
     @title = @user.name
+  end
+ 
+  def update
+    @user = User.find(params[:id])
+    if @user.update_attributes(params[:user])
+      flash[:success] = "Profile updated."
+      redirect_to @user
+    else
+      @title = "Edit user"
+      render 'edit'
+    end
+  end
+ 
+  def edit
+    @user = User.find(params[:id])
+    @title = "Edit user"
   end
 
   def edit
@@ -41,6 +64,7 @@ class UsersController < ApplicationController
       render 'new'
     end
   end
+<<<<<<< HEAD
 
   def update
     @user = User.find(params[:id])
@@ -59,12 +83,18 @@ class UsersController < ApplicationController
       deny_access unless signed_in?
     end
 
+=======
+  private
+>>>>>>> user-microposts
     def correct_user
       @user = User.find(params[:id])
       redirect_to(root_path) unless current_user?(@user)
     end
+<<<<<<< HEAD
 
     def admin_user
       redirect_to(root_path) unless current_user.admin?
     end
+=======
+>>>>>>> user-microposts
 end

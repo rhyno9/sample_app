@@ -10,7 +10,11 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(:version => 20110207140511) do
+=======
+ActiveRecord::Schema.define(:version => 20110207164504) do
+>>>>>>> user-microposts
 
   create_table "microposts", :force => true do |t|
     t.string   "content"
